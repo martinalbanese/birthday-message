@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sopresa</title>
+    <link rel="icon" href="./assets/balloon-heart-fill.svg">
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+
+    <div id="birthday-cake">
+
+        <div id="message-container">
+            <div id="text" class="text">Buon compleanno amore!</div>
+        </div>
+
+        <div id="cake" class="cake">
+            <div class="middle"></div>
+            <div class="chocs"></div>
+            <div class="top"></div>
+        </div>
+
+        <div id="candles">
+            <div id="flame" class="flame"></div>
+            <div id="flame2" class="flame"></div>
+            <div id="flame3" class="flame"></div>
+            <div class="shadows"></div>
+        </div>
+    </div>
+
+    <div class="instruction">
+        <p>Clicca sulle candele per spegnerle</p>
+    </div>
+
+    <div id="fireworks"></div>
+    
+    <script type="module">
+        import { blowCandle, showBirthdayMessage } from './js/dom-manipulator/index.js';
+        import Fireworks from './fireworks-js';
+
+        // Aggiungi un event listener per spegnere le candele al click
+        document.addEventListener('click', function(event) {
+            if (event.target.classList.contains('flame')) { 
+                //Spegne le candele e fa comparire il messaggio di auguri
+                blowCandle();
+                showBirthdayMessage();
+
+                //Avvia i fuochi d'artificio dopo 3 secondi dal click sulle candele
+                setTimeout(() => {
+                    const fireworks = new Fireworks(); 
+                    fireworks.start(); 
+                }, 3000);
+            }
+        });
+
+    </script>
+</body>
+</html>
