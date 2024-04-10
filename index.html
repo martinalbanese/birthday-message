@@ -10,7 +10,6 @@
 <body>
 
     <div id="birthday-cake">
-
         <div id="message-container">
             <div id="text" class="text">Buon compleanno amore!</div>
         </div>
@@ -33,27 +32,34 @@
         <p>Clicca sulle candele per spegnerle</p>
     </div>
 
-    <div id="fireworks"></div>
-    
-    <script type="module">
-        import { blowCandle, showBirthdayMessage } from './js/dom-manipulator/index.js';
-        import Fireworks from './fireworks-js';
+    <div id="fireworks" class="fireworksDiv"></div>
 
-        // Aggiungi un event listener per spegnere le candele al click
+
+
+<!-- Libreria fireworks-js da jsDelivr -->
+<script src="https://cdn.jsdelivr.net/npm/fireworks-js@2.x/dist/index.umd.js"></script>
+
+<!-- Script per la logica dei fuochi d'artificio -->
+<script type="module">
+    import { blowCandle, showBirthdayMessage, startFireworks } from './js/dom-manipulator/index.js'
+    document.addEventListener('DOMContentLoaded', function() {
+        // Avvia l'animazione dei fuochi d'artificio dopo 3 secondi dal click sulle candele
         document.addEventListener('click', function(event) {
             if (event.target.classList.contains('flame')) { 
                 //Spegne le candele e fa comparire il messaggio di auguri
                 blowCandle();
                 showBirthdayMessage();
-
-                //Avvia i fuochi d'artificio dopo 3 secondi dal click sulle candele
                 setTimeout(() => {
-                    const fireworks = new Fireworks(); 
-                    fireworks.start(); 
+                    startFireworks();
                 }, 3000);
             }
         });
+    });
+</script>
 
-    </script>
 </body>
 </html>
+
+
+
+    
